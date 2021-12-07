@@ -7,11 +7,9 @@ const Component = props =>{
     const {umsKey, rect}=props
     const buttonRef=useRef()
 
-
     const [state,methods]=useMethods((dispatch,state)=>({
         addRect(e){
             console.info("addRect",umsKey)
-            //e.stopPropagation()
             const rect={
                 top: Math.floor(Math.random()*100),
                 left: Math.floor(Math.random()*100),
@@ -19,13 +17,10 @@ const Component = props =>{
                 height: Math.floor(Math.random()*100),
                 backgroundColor: backgroundColorTable[Math.floor(Math.random()*8)]
             }
-            //useMethods.pushState()
             dispatch({rects: state.rects.concat([rect])})
         },
         toggleHidden(e){
             console.info("toggleHidden",umsKey)
-            //e.stopPropagation()
-            //useMethods.pushState()
             dispatch({hidden: !state.hidden})
         }
     }),{rects: [], hidden: false},umsKey)
@@ -42,7 +37,7 @@ const Component = props =>{
             <div ref={buttonRef} style={{...rect, position: 'absolute', cursor: 'pointer', backgroundColor: state.hidden?'dark'+rect.backgroundColor:rect.backgroundColor}}  key={Object.values(rect).join('-')} >
             </div>
             {!state.hidden && state.rects.map((rect,i)=> 
-                <Component rect={rect} key={Object.values(rect).join('-')} umsKey={umsKey+'-'+i} />
+                <Component rect={rect} {...methods.keys(Object.values(rect).join('-'))} />
                 )
             }
         </>
@@ -71,7 +66,7 @@ const Template = args => {
           position: 'relative'
         }}
       >
-        <Component umsKey="ums1" key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundColor: 'purple'}} />
+        <Component key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundColor: 'purple'}} />
       </div>
     </div>
   )
