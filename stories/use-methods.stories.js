@@ -2,7 +2,10 @@ import { React, useState, useRef } from 'react'
 import useMethods from '../use-methods'
 import useDoubleClick from 'use-double-click'
 
-const backgroundColorTable=['red','green','blue','cyan','magenta','yellow','black','purple']
+const backgroundColorTable=[
+    'red','green','blue','cyan','magenta','yellow','black','purple',
+    'darkred', 'dark', 'darkblue', 'darkcyan', 'darkmagenta', 'darkgoldenrod', 'gray', 'violet'
+]
 const Component = props =>{
     const {umsKey, rect}=props
     const buttonRef=useRef()
@@ -13,9 +16,9 @@ const Component = props =>{
             const rect={
                 top: Math.floor(Math.random()*100),
                 left: Math.floor(Math.random()*100),
-                width: Math.floor(Math.random()*100),
-                height: Math.floor(Math.random()*100),
-                backgroundColor: backgroundColorTable[Math.floor(Math.random()*8)]
+                width: Math.floor(Math.random()*100)+50,
+                height: Math.floor(Math.random()*100)+50,
+                backgroundIndex: Math.floor(Math.random()*8)
             }
             dispatch({rects: state.rects.concat([rect])})
         },
@@ -34,8 +37,7 @@ const Component = props =>{
 
     return (
         <>
-            <div ref={buttonRef} style={{...rect, position: 'absolute', cursor: 'pointer', backgroundColor: state.hidden?'dark'+rect.backgroundColor:rect.backgroundColor}}  key={Object.values(rect).join('-')} >
-            </div>
+            <div ref={buttonRef} style={{...rect, position: 'absolute', cursor: 'pointer', backgroundColor: state.hidden?backgroundColorTable[rect.backgroundIndex]:backgroundColorTable[rect.backgroundIndex + 8]}}  key={Object.values(rect).join('-')} />
             {!state.hidden && state.rects.map((rect,i)=> 
                 <Component rect={rect} {...methods.keys(Object.values(rect).join('-'))} />
                 )
@@ -66,7 +68,7 @@ const Template = args => {
           position: 'relative'
         }}
       >
-        <Component key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundColor: 'purple'}} />
+        <Component key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundIndex: 7}} />
       </div>
     </div>
   )
