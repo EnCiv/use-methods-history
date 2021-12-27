@@ -94,7 +94,7 @@ export function useMethods(methodsObj, initialState, umsKey, deps=[]) {
     }
 
     // methodsObj is a function that returns an object of methods - because we need to pass dispatch to it.  Passing methodState doesn't hurt
-    // wrapMethods puts in a few common methods
+    // addCommonMethods puts in a few common methods
     const methods = useCallback(addCommonMethods(_this, methodsObj, initialState ),deps) // dispatch and methodState aren't in deps because they never change
 
     useEffect(()=>{
