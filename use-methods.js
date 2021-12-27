@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useReducer, useEffect, useCallback } from 'react'
 import { cloneDeep, isEqual } from 'lodash'
 
 // while "object" state  (a pointer for you C programmers) will change each time, the object state.methodState (meaning the pointer methodState) will always be the same
@@ -23,7 +23,7 @@ function reducer(state, action) {
 // !!! need to do work to delete the children in that case
 
 
-export function useMethods(methodsObj, initialState, umsKey) {
+export function useMethods(methodsObj, initialState, umsKey, deps) {
 
     // the thing about the umsKey is that it needs to be unique accross the application running on the browser
     // but it should be the same if the user goes backward in history and then forward again - this is how we will find the state and reuse that state when the user moves forward after a component was unmounted
@@ -63,7 +63,7 @@ export function useMethods(methodsObj, initialState, umsKey) {
 
     const methodState = state.methodState // now you don't have to say state.methodState everywhere
 
-    const [methods, neverSetMethods] = useState(() => methodsObj(dispatch, methodState))
+    const methods = useCallback(methodsObj(dispatch, methodState),deps) // dispatch and methodState aren't in deps because they never change
 
     methods.reset = function () {
         // reset the methodState back to initialState by mutating the original object.  
