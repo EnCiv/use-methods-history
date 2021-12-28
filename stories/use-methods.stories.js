@@ -4,10 +4,10 @@ import useDoubleClick from 'use-double-click'
 
 const backgroundColorTable=[
     'red','green','blue','cyan','magenta','yellow','black','purple',
-    'darkred', 'dark', 'darkblue', 'darkcyan', 'darkmagenta', 'darkgoldenrod', 'gray', 'violet'
+    'darkred', 'darkgreen', 'darkblue', 'darkcyan', 'darkmagenta', 'darkgoldenrod', 'gray', 'violet'
 ]
 const Component = props =>{
-    const {umsKey, rect}=props
+    const {umsKey, rect, keyType}=props
     const buttonRef=useRef()
 
     const [state,methods]=useMethods((dispatch,state)=>({
@@ -35,11 +35,24 @@ const Component = props =>{
         latency: 250
     })
 
+    const keys=(i,rect)=>{
+      switch(keyType){
+        case 'i':
+          return methods.keys(i)
+        case 'rect':
+          return methods.keys(Object.values(rect).join('-'))
+        case 'none':
+          default:
+            return {key: Object.values(rect).join('-')}
+      }
+    }
+
     return (
         <>
-            <div ref={buttonRef} style={{...rect, position: 'absolute', cursor: 'pointer', backgroundColor: state.hidden?backgroundColorTable[rect.backgroundIndex]:backgroundColorTable[rect.backgroundIndex + 8]}}  key={Object.values(rect).join('-')} />
-            {!state.hidden && state.rects.map((rect,i)=> 
-                <Component rect={rect} {...methods.keys(Object.values(rect).join('-'))} />
+            <div ref={buttonRef} style={{...rect, position: 'absolute', cursor: 'pointer', border: 'solid black 1px', backgroundColor: state.hidden?backgroundColorTable[rect.backgroundIndex]:backgroundColorTable[rect.backgroundIndex + 8]}}  key={Object.values(rect).join('-')} />
+            {!state.hidden && state.rects.map((rect,i)=> {
+                return <Component rect={rect} {...keys(i,rect)} keyType={keyType} />
+            }
                 )
             }
         </>
@@ -68,11 +81,17 @@ const Template = args => {
           position: 'relative'
         }}
       >
-        <Component key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundIndex: 7}} />
+        <Component key="1" rect={{top: 100, left: 100, width: 100, height: 100, backgroundIndex: 7}} {...args} />
       </div>
     </div>
   )
 }
 
-export const Normal = Template.bind({})
-Normal.args = {}
+export const WithKey = Template.bind({})
+WithKey.args = { keyType: "rect" , umsKey: 'WithKey'}
+
+export const WithIndexKey = Template.bind({})
+WithIndexKey.args={ keyType: 'i', umsKey: 'WithIndexKey'}
+
+export const WithOutKey = Template.bind({})
+WithOutKey.args = {}
