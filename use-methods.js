@@ -37,15 +37,19 @@ const addCommonMethods=(_this, methodsObj, initialState)=>{
     methods.reset = function () {
         // reset the methodState back to initialState by mutating the original object.  
         // don't create a new object, becasue the methosObjs were instantiated to work with the original state.methodState object.
-        Object.keys(methodState).forEach(key => { delete methodState[key] })
-        Object.assign(methodState, initialState)
-        dispatch({})
+        Object.keys(_this.methodState).forEach(key => { delete _this.methodState[key] })
+        Object.assign(_this.methodState, initialState)
+        _this.dispatch({})
     }
 
     // <Component {...methods.keys(key)} ... > will get you the key for your component and the usmKey for the child
     methods.keys=function(key){
         key=key+'' // it could be 0 make sure it's a string
         return {key, umsKey: key ? _this.umsKey+'.'+key : undefined}
+    }
+
+    methods.setState= function(newState){
+        _this.dispatch(newState)
     }
     return methods
 }
