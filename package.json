@@ -1,33 +1,33 @@
 {
-  "name": "use-method-history",
-  "version": "0.0.0",
-  "description": "useMethod with combined state history",
-  "main": "use-methods.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "keywords": [
-    "react",
-    "usemethod",
-    "state",
-    "history"
-  ],
-  "author": "David Fridley",
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.21",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "use-double-click": "^1.0.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@storybook/addon-actions": "^6.4.8",
-    "@storybook/addon-essentials": "^6.4.8",
-    "@storybook/addon-links": "^6.4.8",
-    "@storybook/react": "^6.4.8",
-    "babel-loader": "^8.2.3"
-  }
+    "name": "use-methods-history",
+    "version": "0.0.0",
+    "description": "useMethods with combined state history",
+    "main": "use-methods-history.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
+    },
+    "keywords": [
+        "react",
+        "usemethod",
+        "state",
+        "history"
+    ],
+    "author": "David Fridley",
+    "license": "MIT",
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "use-double-click": "^1.0.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@storybook/addon-actions": "^6.4.8",
+        "@storybook/addon-essentials": "^6.4.8",
+        "@storybook/addon-links": "^6.4.8",
+        "@storybook/react": "^6.4.8",
+        "babel-loader": "^8.2.3"
+    }
 }
