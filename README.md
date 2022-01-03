@@ -71,7 +71,7 @@ When rendering a child, this will return (key, umhKey) to create a unique key fo
 
 resets the state of the component to the InitialState
 
-### methods.setState({key, val, key2, val2, ...})
+### methods.setState({key: val, key2: val2, ...})
 
 like the traditional setState of ReactClasses this allows you to set the state directly rather than create a methods - but methods are probably more descriptive
 
