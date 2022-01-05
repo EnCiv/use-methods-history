@@ -1,6 +1,6 @@
 {
     "name": "use-methods-history",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "useMethods with combined state history",
     "main": "use-methods-history.js",
     "scripts": {
@@ -17,10 +17,10 @@
     "author": "David Fridley",
     "license": "MIT",
     "dependencies": {
-        "lodash": "^4.17.21",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "use-double-click": "^1.0.5"
+        "lodash": "^4.17.21"
+    },
+    "peerDependencies": {
+        "react": ">=16"
     },
     "devDependencies": {
         "@babel/core": "^7.16.0",
@@ -28,6 +28,7 @@
         "@storybook/addon-essentials": "^6.4.8",
         "@storybook/addon-links": "^6.4.8",
         "@storybook/react": "^6.4.8",
-        "babel-loader": "^8.2.3"
+        "babel-loader": "^8.2.3",
+        "use-double-click": "^1.0.5"
     }
 }
