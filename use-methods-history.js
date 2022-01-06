@@ -113,7 +113,7 @@ export function useMethodsHistory(methodsObj, initialState, umhKey, deps = []) {
 
     useEffect(() => {
         if (typeof window !== "undefined")
-            if (history.state.key !== "useMethods") {
+            if (history?.state?.key !== "useMethods") {
                 // on the server there is no history
                 // this is the first time through
                 if (useMethodsHistory.timeout) clearTimeout(useMethodsHistory.timeout)
