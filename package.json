@@ -1,6 +1,6 @@
 {
     "name": "use-methods-history",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "useMethods with combined state history",
     "main": "dist/use-methods-history.js",
     "scripts": {
