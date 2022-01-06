@@ -1,13 +1,15 @@
 {
     "name": "use-methods-history",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "useMethods with combined state history",
     "type": "module",
-    "main": "use-methods-history.js",
+    "main": "dist/use-methods-history.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "build-storybook": "build-storybook",
+        "build": "babel use-methods-history.js -d dist",
+        "prepare": "npm run build"
     },
     "keywords": [
         "react",
@@ -24,7 +26,9 @@
         "react": ">=16"
     },
     "devDependencies": {
-        "@babel/core": "^7.16.0",
+        "@babel/cli": "^7.16.7",
+        "@babel/core": "^7.16.7",
+        "@babel/preset-env": "^7.16.7",
         "@storybook/addon-actions": "^6.4.8",
         "@storybook/addon-essentials": "^6.4.8",
         "@storybook/addon-links": "^6.4.8",
